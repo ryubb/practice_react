@@ -13,9 +13,7 @@ workflows:
     jobs:
       - deploy:
           name: Deploy Master to Heroku
-          - deploy:
-              name: Deploy Master to Heroku
-              command: |
-                if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                  git push heroku master
-                fi
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              git push heroku master
+            fi
