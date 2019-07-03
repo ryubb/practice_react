@@ -1,20 +1,15 @@
-version: 2
-jobs:
-  deploy:
-    docker:
-      - image: circleci/php:7.1.8-browsers
-    steps:
-      - checkout
-      - run:
-          name: heroku deploy
-          command: |
-            git push https://heroku:318e6419-29e9-4a96-b26b-65a456d8617b@git.heroku.com/practice-react-ryubb.git master
+# Use the latest 2.1 version of CircleCI pipeline processing engine, see https://circleci.com/docs/2.0/configuration-reference/
+version: 2.1
+
+# Use a package of configuration called an orb, see https://circleci.com/docs/2.0/orb-intro/
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.3.1
+
+# Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
 workflows:
-  version: 2
-  deploy:
+  # Name the workflow "Welcome"
+  Welcome:
+    # Run the welcome/run job in its own container
     jobs:
-      - deploy:
-          filters:
-            branches:
-              only: master
-view raw
+      - welcome/run
