@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  contact:
+    build: .
+    image: samplepage:0.9
+    container_name: samplepage
+    tty: true
+    ports:
+      - "5000:5000"
+    volumes:
+      - /Users/hashimotoryuunosuke/Library/Caches/Yarn/v4
+
+volumes:
+  yarn-cache:
