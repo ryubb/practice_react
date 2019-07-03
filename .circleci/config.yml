@@ -17,7 +17,7 @@ jobs:
           name: "build docker image"
           # registry.heroku.com/${HEROKU_APP_NAME}/webは変更することは出来ません．
           # 上記のコメントの通りやとうまくいかない。${HEROKU_APP_NAME}がCircleCI側で読み込まれていない
-          command: docker build --rm=false -t registry.heroku.com/practice-react-ryubb/web .
+          command: docker build --rm=false -t registry.heroku.com/${HEROKU_APP_NAME}/web .
       - run:
           name: setup heroku command
           # CircleCIからHerokuへデプロイするためのスクリプトを実行
