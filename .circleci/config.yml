@@ -31,14 +31,14 @@ jobs:
           name: "push container to registry.heroku.com"
           # Herokuへログインし，作成したイメージをPush,Releaseします．
           command: |
-            docker login --username=_ --password=$HEROKU_AUTH_TOKEN registry.heroku.com
+            docker login --username=_ --password=4416b722-5223-49d3-892e-acef481bd7ad registry.heroku.com
             docker push registry.heroku.com/practice-react-ryubb/web
             heroku container:push web --app practice-react-ryubb
             heroku container:release web --app practice-react-ryubb
-      - run:
-          name: heroku maintenance off
-          # メンテナンスモードをオフにします．
-          command: heroku maintenance:off --app practice-react-ryubb
+      # - run:
+      #     name: heroku maintenance off
+      #     # メンテナンスモードをオフにします．
+      #     command: heroku maintenance:off --app practice-react-ryubb
 workflows:
   version: 2
   build_and_deploy:
