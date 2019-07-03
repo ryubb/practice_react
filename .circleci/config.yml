@@ -15,4 +15,3 @@ workflows:
           filters:
             branches:
               only: master
-view raw
