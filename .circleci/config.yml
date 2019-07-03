@@ -16,4 +16,3 @@ workflows:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               git push https://heroku:4416b722-5223-49d3-892e-acef481bd7ad@git.heroku.com/practice_react.git master
-            fi
