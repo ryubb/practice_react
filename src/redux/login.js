@@ -2,72 +2,51 @@ import client from "../config/apiClient";
 
 const initState = {};
 
-const loginReducer = (state = initState, action = {}) => {
+const userReducer = (state = initState, action) => {
   switch (action.type) {
-    case "LOGIN":
-      console.log("redux login");
-      return {
-        ...state,
-        data: action.payload
-      };
     case "SUCCESS":
-      console.log("redux success");
       return {
         ...state,
-        data: action,
-        status: "success"
+        data: action
       };
     case "FAIL":
-      console.log("redux fail");
       return {
         ...state,
-        data: action,
-        status: "fail"
+        age: action.age
       };
     default:
-      console.log("redux default");
       return state;
   }
 };
 
-export function studentLoginSuccess(result) {
-  return {
-    type: "SUCCESS",
-    payload: result
-  };
-}
+export default userReducer;
 
-export function studentLoginFail(err) {
-  return {
-    type: "FAIL",
-    payload: err
-  };
-}
-
-export function doLogin(email, password) {
-  return () => dispatch => {
-    console.log("Login success");
+export function doLogin() {
+  return dispatch => {
     const data = {
-      email: email,
-      password: password
+      email: "ryubb1108@gmail.com",
+      password: "Ryubb15312"
     };
     return client.post("/v1/students/login", data).then(
       res => {
         const payload = res.data;
-        if (payload.accesToken && payload.localKey) {
-          dispatch(studentLoginSuccess(payload));
+        if (payload.accessToken && payload.localKey) {
+          dispatch({ type: "SUCCESS", data: payload });
         } else {
           const err = new Error("Cannot get authToken.");
-          dispatch(studentLoginFail(res));
-          throw err;
+          dispatch({
+            type: "FAIL",
+            payload: err
+          });
         }
       },
       err => {
-        dispatch(studentLoginFail(err));
+        dispatch({
+          type: "FAIL",
+          data: err
+        });
         throw err;
       }
     );
   };
 }
-
-export default loginReducer;

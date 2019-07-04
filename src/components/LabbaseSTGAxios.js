@@ -1,41 +1,44 @@
 import React from "react";
 import { connect } from "react-redux";
 
-// import { setName, setAge } from "../redux/userAction.js";
 import { doLogin } from "../redux/login";
 
 class LabbaseSTGAxios extends React.Component {
-  login() {
-    console.log("test");
-    this.props.doLogin("u.str.gm@gmail.com", "Test1234");
+  //   login() {
+  //     console.log("test");
+  //     this.props.studentLoginSuccess("u.str.gm@gmail.com", "Test1234");
+  //   }
+
+  clickSetName() {
+    this.props.doLogin();
   }
 
-  // clickSetName() {
-  //   this.props.setName("ryu");
-  // }
-
-  // clickSetAge() {
-  //   this.props.setAge(30);
-  // }
+  clickSetAge() {
+    this.props.setAge(30);
+  }
 
   render() {
+    const { state } = this.props;
+    console.log(state);
+
     return (
       <div>
-        <button onClick={this.login.bind(this)}>fetch</button>
+        <button onClick={() => this.clickSetName()}>Set Name</button>
+        <button onClick={() => this.clickSetAge()}>Set Age</button>
+        {/* <button onClick={() => this.login()}>fetch</button> */}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  // name: state.name,
-  // age: state.age
+  state: state
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    doLogin: (email, password) => dispatch(email, password)
-    // setName: name => dispatch(setName(name)),
+    // studentLoginSuccess: () => dispatch()
+    doLogin: name => dispatch(doLogin(name))
     // setAge: age => dispatch(setAge(age))
   };
 };

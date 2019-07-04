@@ -1,15 +1,20 @@
 import React from "react";
+import styled from "react-emotion";
 
 import HooksComponent from "./components/HooksComponent";
 import LabbaseSTGAxios from "./components/LabbaseSTGAxios";
 
+const Body = styled("div")`
+  width: 1024px;
+  margin: 0 auto;
+`;
+
 const App = () => {
   return (
-    <div className="App">
+    <Body>
       <HooksComponent />
-      {/* <LabbaseSTGAxios /> */}
-      <h1>CIサクセス！！</h1>
-    </div>
+      <LabbaseSTGAxios />
+    </Body>
   );
 };
 
