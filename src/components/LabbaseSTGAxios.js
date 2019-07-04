@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 // import { setName, setAge } from "../redux/userAction.js";
 import { doLogin } from "../redux/login";
-import { increment, decrement } from "../redux/counterAction";
 
 class LabbaseSTGAxios extends React.Component {
   login() {
@@ -22,9 +21,7 @@ class LabbaseSTGAxios extends React.Component {
   render() {
     return (
       <div>
-        {/* {/* <button onClick={this.login.bind(this)}>fetch</button> */}
-        <button onClick={this.clickSetName.bind(this)}>SetName</button>
-        <button onClick={this.clickSetAge.bind(this)}>SetAge</button> */}
+        <button onClick={this.login.bind(this)}>fetch</button>
       </div>
     );
   }

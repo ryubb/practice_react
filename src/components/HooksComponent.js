@@ -30,11 +30,11 @@ const HooksComponent = () => {
   return (
     <React.Fragment>
       <div>{count}</div>
-      <div>{timeLeft}</div>
+      {/* <div>{timeLeft}</div> */}
       <button onClick={increment}>+1</button>
       <button onClick={decrement}>-1</button>
-      <button onClick={tick}>Go!</button>
-      <button onClick={reset}>Stop!</button>
+      {/* <button onClick={tick}>Go!</button>
+      <button onClick={reset}>Stop!</button> */}
     </React.Fragment>
   );
 };
