@@ -2,26 +2,31 @@ import client from "../config/apiClient";
 
 const initState = {};
 
-const userReducer = (state = initState, action) => {
+const loginReducer = (state = initState, action) => {
   switch (action.type) {
     case "SUCCESS":
       return {
         ...state,
-        data: action
+        data: action.payload
       };
     case "FAIL":
       return {
         ...state,
-        age: action.age
+        data: action.payload
+      };
+    case "STUDENTSUCCESS":
+      return {
+        ...state,
+        data: action.payload
       };
     default:
       return state;
   }
 };
 
-export default userReducer;
+export default loginReducer;
 
-export function doLogin() {
+export const doLogin = () => {
   return dispatch => {
     const data = {
       email: "ryubb1108@gmail.com",
@@ -31,7 +36,7 @@ export function doLogin() {
       res => {
         const payload = res.data;
         if (payload.accessToken && payload.localKey) {
-          dispatch({ type: "SUCCESS", data: payload });
+          dispatch({ type: "SUCCESS", payload: payload });
         } else {
           const err = new Error("Cannot get authToken.");
           dispatch({
@@ -43,10 +48,34 @@ export function doLogin() {
       err => {
         dispatch({
           type: "FAIL",
-          data: err
+          payload: err
         });
         throw err;
       }
     );
   };
-}
+};
+
+export const fetchStudentMe = accessToken => {
+  return dispatch =>
+    client
+      .get("/v1/students/me", {
+        headers: {
+          "Content-Type": "application/json",
+          "Application-Authorization": `Bearer ${accessToken}`
+        }
+      })
+      .then(
+        res => {
+          const payload = res.data;
+          if (payload.email_hash) {
+            dispatch({ type: "STUDENTSUCCESS", payload: payload });
+          } else {
+            dispatch({ type: "STUDENTFAIL", payload: payload });
+          }
+        },
+        err => {
+          dispatch({ type: "STUDENTSUCCESS", payload: err });
+        }
+      );
+};
