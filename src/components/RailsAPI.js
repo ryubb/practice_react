@@ -1,5 +1,5 @@
 import React from "react";
-// import railsClient from "../config/railsClient";
+import railsClient from "../config/apiRailsClient";
 
 class RailsAPI extends React.Component {
   constructor(props) {
@@ -11,13 +11,23 @@ class RailsAPI extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/api/v1/posts", {
-      method: "GET"
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ titles: data.data });
+    railsClient
+      .get("/api/v1/posts", {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => {
+        const payload = res.data;
+        this.setState({ titles: payload });
       });
+    // fetch("http://localhost:3000/api/v1/posts", {
+    //   method: "GET"
+    // })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     this.setState({ titles: data.data });
+    //   });
   }
 
   fetchRails(evt) {
