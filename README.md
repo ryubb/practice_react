@@ -2,6 +2,10 @@
 
 yarn start
 
+## Docker を使ったローカルでの立ち上げ方(5000)
+
+docker-compose up -d
+
 ## heroku へのデプロイの仕方
 
 git add .
