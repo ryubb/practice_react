@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "react-emotion";
 
-import HooksComponent from "./components/HooksComponent";
-import LabbaseSTGAxios from "./components/LabbaseSTGAxios";
+// import HooksComponent from "./components/HooksComponent";
+// import LabbaseSTGAxios from "./components/LabbaseSTGAxios";
 import RailsAPI from "./components/RailsAPI";
 
 const Body = styled("div")`
@@ -13,8 +13,6 @@ const Body = styled("div")`
 const App = () => {
   return (
     <Body>
-      <HooksComponent />
-      <LabbaseSTGAxios />
       <RailsAPI />
     </Body>
   );
