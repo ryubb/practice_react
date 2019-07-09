@@ -4,6 +4,7 @@ import styled from "react-emotion";
 // import HooksComponent from "./components/HooksComponent";
 // import LabbaseSTGAxios from "./components/LabbaseSTGAxios";
 import RailsAPI from "./components/RailsAPI";
+import BubbleEvent from "./components/BubbleEvent";
 
 const Body = styled("div")`
   width: 1024px;
@@ -14,6 +15,7 @@ const App = () => {
   return (
     <Body>
       <RailsAPI />
+      <BubbleEvent />
     </Body>
   );
 };
