@@ -7,6 +7,7 @@ import LabbaseSTGAxios from "./components/LabbaseSTGAxios";
 import BubbleEvent from "./components/BubbleEvent";
 import HooksComponent from "./components/HooksComponent";
 import Children from "./components/Children";
+import TodoApp from "./components/TodoApp";
 
 const Body = styled("div")`
   width: 1024px;
@@ -28,7 +29,8 @@ const links = [
   { name: "LabbaseSTG API", link_to: "/labbaseSTGAPI" },
   { name: "Event Bubble", link_to: "/eventBubble" },
   { name: "Children", link_to: "/children" },
-  { name: "Hooks", link_to: "/hooks" }
+  { name: "Hooks", link_to: "/hooks" },
+  { name: "TodoApp", link_to: "/todo" }
 ];
 
 const App = () => {
@@ -49,6 +51,7 @@ const App = () => {
         <Route path="/eventBubble" component={BubbleEvent} />
         <Route path="/children" component={Children} />
         <Route path="/hooks" component={HooksComponent} />
+        <Route path="/todo" component={TodoApp} />
       </Switch>
     </Body>
   );

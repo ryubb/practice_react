@@ -22,7 +22,7 @@ class RailsAPI extends React.Component {
   postRails(evt) {
     evt.preventDefault();
 
-    const { title, titles } = this.state;
+    const { title } = this.state;
     const postData = { title: title };
     railsClient.post("/v1/posts", postData).then(res => {
       const payload = res.data;

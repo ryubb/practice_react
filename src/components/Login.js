@@ -33,12 +33,11 @@ class Login extends React.Component {
       .then(data => {
         if (data.token) {
           auth.login(data.token);
-          this.props.history.push("/slider");
         } else {
           alert(data.message);
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => err);
   }
 
   render() {
