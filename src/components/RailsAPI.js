@@ -11,6 +11,31 @@ class RailsAPI extends React.Component {
   }
 
   componentDidMount() {
+    this.getPosts();
+  }
+
+  fetchRails(evt) {
+    evt.preventDefault();
+    this.getPosts();
+  }
+
+  postRails(evt) {
+    evt.preventDefault();
+
+    const { title, titles } = this.state;
+    const postData = { title: title };
+    railsClient.post("/v1/posts", postData).then(res => {
+      const payload = res.data;
+      this.setState({ titles: payload.data });
+      this.setState({ title: "" });
+    });
+  }
+
+  handleText(evt) {
+    evt && this.setState({ title: evt.target.value });
+  }
+
+  getPosts() {
     railsClient
       .get("/v1/posts", {
         headers: {
@@ -19,53 +44,8 @@ class RailsAPI extends React.Component {
       })
       .then(res => {
         const payload = res.data;
-        this.setState({ titles: payload });
+        this.setState({ titles: payload.data });
       });
-    // fetch("http://localhost:3000/api/v1/posts", {
-    //   method: "GET"
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     this.setState({ titles: data.data });
-    //   });
-  }
-
-  fetchRails(evt) {
-    evt.preventDefault();
-
-    fetch("http://localhost:3000/v1/posts", {
-      method: "GET"
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ titles: data.data });
-      });
-  }
-
-  postRails(evt) {
-    evt.preventDefault();
-
-    const { title, titles } = this.state;
-    title &&
-      fetch("http://localhost:3000/api/v1/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ title: this.state.title })
-      })
-        .then(res => res.json())
-        .then(
-          data => (
-            titles.push(data.data),
-            this.setState({ titles: titles }),
-            this.setState({ title: "" })
-          )
-        );
-  }
-
-  handleText(evt) {
-    evt && this.setState({ title: evt.target.value });
   }
 
   render() {
