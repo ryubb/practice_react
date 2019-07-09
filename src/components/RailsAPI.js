@@ -12,7 +12,7 @@ class RailsAPI extends React.Component {
 
   componentDidMount() {
     railsClient
-      .get("/api/v1/posts", {
+      .get("/v1/posts", {
         headers: {
           "Content-Type": "application/json"
         }
@@ -33,7 +33,7 @@ class RailsAPI extends React.Component {
   fetchRails(evt) {
     evt.preventDefault();
 
-    fetch("http://localhost:3000/api/v1/posts", {
+    fetch("http://localhost:3000/v1/posts", {
       method: "GET"
     })
       .then(res => res.json())
