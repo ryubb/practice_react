@@ -2,6 +2,7 @@ import React from "react";
 import styled from "react-emotion";
 
 import railsClient from "../config/apiRailsClient";
+import { Card } from "@material-ui/core";
 
 class RailsAPI extends React.Component {
   constructor(props) {
@@ -43,6 +44,15 @@ class RailsAPI extends React.Component {
     this.setState({ label: e.target.value });
   }
 
+  todoDelelte(id) {
+    const { todos } = this.state;
+    railsClient.delete(`v1/todos/${id}`).then(res => {
+      const payload = res.data.data;
+      todos.splice(payload, 1);
+      this.setState({ todos });
+    });
+  }
+
   onSubmit(e) {
     e.preventDefault();
     const { todos, title, content, label } = this.state;
@@ -54,7 +64,6 @@ class RailsAPI extends React.Component {
     };
 
     railsClient.post("/v1/todos", postData).then(res => {
-      console.log(res);
       const payload = res.data.data;
       todos.push(payload);
       this.setState({ todos });
@@ -74,9 +83,14 @@ class RailsAPI extends React.Component {
             todos.map(todo => {
               return (
                 <TodoWrapper key={todo.id}>
-                  <p>{todo.title}</p>
-                  <p>{todo.content && todo.content}</p>
-                  <p>{todo.label && todo.label}</p>
+                  <TitleWrapper>
+                    <TodoTitle>{todo.title}</TodoTitle>
+                    <TodoDelete onClick={() => this.todoDelelte(todo.id)}>
+                      x
+                    </TodoDelete>
+                  </TitleWrapper>
+                  <TodoContent>{todo.content && todo.content}</TodoContent>
+                  <TodoLabel>{todo.label && todo.label}</TodoLabel>
                 </TodoWrapper>
               );
             })}
@@ -117,8 +131,32 @@ const TodoBody = styled("div")`
   margin-right: 40px;
 `;
 
-const TodoWrapper = styled("div")`
-  margin-bottom: 20px;
+const TodoWrapper = styled(Card)`
+  && {
+    margin-bottom: 20px;
+  }
+`;
+
+const TitleWrapper = styled("div")`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const TodoTitle = styled("p")`
+  font-size: 15px;
+`;
+
+const TodoDelete = styled("div")`
+  margin-right: 20px;
+  cursor: pointer;
+`;
+
+const TodoContent = styled("p")`
+  font-size: 12px;
+`;
+
+const TodoLabel = styled("p")`
+  font-size: 10px;
 `;
 
 const TodoForm = styled("form")`
