@@ -3,14 +3,18 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
+// import configureStore from "./store/configureStore";
+import reducer, { watchFetchDog } from "./reducers/index";
 
 import App from "./App";
-import loginReducer from "./redux/login";
 
 import * as serviceWorker from "./serviceWorker";
 
-const store = createStore(loginReducer, applyMiddleware(thunk));
+// Store
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(reducer, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(watchFetchDog);
 
 ReactDOM.render(
   <Provider store={store}>

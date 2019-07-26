@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "react-emotion";
+import styled from "styled-components";
 import { Link, Route, Switch } from "react-router-dom";
 
 import RailsAPI from "./components/RailsAPI";
@@ -8,6 +8,8 @@ import BubbleEvent from "./components/BubbleEvent";
 import HooksComponent from "./components/HooksComponent";
 import Children from "./components/Children";
 import TodoApp from "./components/TodoApp";
+import Generator from "./components/Generator";
+import SagaTest from "./components/SagaTest";
 
 const Body = styled("div")`
   width: 1024px;
@@ -30,7 +32,9 @@ const links = [
   { name: "Event Bubble", link_to: "/eventBubble" },
   { name: "Children", link_to: "/children" },
   { name: "Hooks", link_to: "/hooks" },
-  { name: "TodoApp", link_to: "/todo" }
+  { name: "TodoApp", link_to: "/todo" },
+  { name: "Generator", link_to: "/generator" },
+  { name: "SagaTest", link_to: "/saga_test" }
 ];
 
 const App = () => {
@@ -52,6 +56,8 @@ const App = () => {
         <Route path="/children" component={Children} />
         <Route path="/hooks" component={HooksComponent} />
         <Route path="/todo" component={TodoApp} />
+        <Route path="/generator" component={Generator} />
+        <Route path="/saga_test" component={SagaTest} />
       </Switch>
     </Body>
   );
