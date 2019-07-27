@@ -27,6 +27,7 @@ const reducer = (state = initialState, action) => {
         error: true
       };
     default:
+      console.log("default reducer");
       return state;
   }
 };
@@ -45,11 +46,13 @@ const requestDogError = () => {
 };
 
 export const fetchDog = () => {
+  console.log("fetchDog");
   return { type: "FETCHED_DOG" };
 };
 
 // Sagas
 export function* watchFetchDog() {
+  console.log("watchFetchDog");
   yield takeEvery("FETCHED_DOG", fetchDogAsync);
 }
 
@@ -68,12 +71,3 @@ function* fetchDogAsync() {
 }
 
 export default reducer;
-
-// import { combineReducers } from "redux";
-// import counter from "./counter";
-
-// const rootReducer = combineReducers({
-//   counter
-// });
-
-// export default rootReducer;

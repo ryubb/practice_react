@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
-// import configureStore from "./store/configureStore";
+import logger from "redux-logger";
 import reducer, { watchFetchDog } from "./reducers/index";
 
 import App from "./App";
@@ -13,7 +13,7 @@ import * as serviceWorker from "./serviceWorker";
 
 // Store
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(reducer, applyMiddleware(sagaMiddleware));
+const store = createStore(reducer, applyMiddleware(sagaMiddleware, logger));
 sagaMiddleware.run(watchFetchDog);
 
 ReactDOM.render(
