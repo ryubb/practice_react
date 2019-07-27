@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Link, Route, Switch } from "react-router-dom";
 
-import RailsAPI from "./components/RailsAPI";
-import LabbaseSTGAxios from "./components/LabbaseSTGAxios";
 import BubbleEvent from "./components/BubbleEvent";
 import HooksComponent from "./components/HooksComponent";
 import Children from "./components/Children";
@@ -27,8 +25,6 @@ const CustomLink = styled(Link)`
 `;
 
 const links = [
-  { name: "Rails API", link_to: "/railsAPI" },
-  { name: "LabbaseSTG API", link_to: "/labbaseSTGAPI" },
   { name: "Event Bubble", link_to: "/eventBubble" },
   { name: "Children", link_to: "/children" },
   { name: "Hooks", link_to: "/hooks" },
@@ -50,8 +46,6 @@ const App = () => {
         })}
       </Header>
       <Switch>
-        <Route path="/railsAPI" component={RailsAPI} />
-        <Route path="/labbaseSTGAPI" component={LabbaseSTGAxios} />
         <Route path="/eventBubble" component={BubbleEvent} />
         <Route path="/children" component={Children} />
         <Route path="/hooks" component={HooksComponent} />
