@@ -9,7 +9,6 @@ import {
 
 // Sagas
 export function* watchFetchTodo() {
-  console.log("watchFetchTodo");
   yield takeEvery("FETCHED_TODO", fetchTodoAsync);
 }
 

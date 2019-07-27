@@ -6,8 +6,6 @@ import { fetchTodo } from "../reducers/fetchTodo";
 class TodoAppSaga extends React.Component {
   render() {
     const { reducerTodo } = this.props;
-    console.log("propsを出力している");
-    console.log(this.props);
 
     return (
       <p>

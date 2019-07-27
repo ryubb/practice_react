@@ -8,7 +8,6 @@ import {
 
 // Sagas
 export function* watchFetchDog() {
-  console.log("watchFetchDog");
   yield takeEvery("FETCHED_DOG", fetchDogAsync);
 }
 

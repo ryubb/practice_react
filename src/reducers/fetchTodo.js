@@ -5,7 +5,6 @@ const initialState = {
   error: false
 };
 const reducerTodo = (state = initialState, action) => {
-  // console.log(action);
   switch (action.type) {
     case "REQUESTED_TODO":
       return {
