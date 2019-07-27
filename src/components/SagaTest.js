@@ -2,25 +2,25 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { fetchDog } from "../reducers/fetchDogs";
+import { fetchDog } from "../reducers/fetchDog";
 
 // Component
 class SagaTest extends React.Component {
   render() {
-    const { reducer } = this.props;
+    const { reducerDog } = this.props;
 
     return (
       <div>
         <button onClick={() => this.props.dispatch(fetchDog())}>
           Show Dog
         </button>
-        {reducer.loading ? (
+        {reducerDog.loading ? (
           <p>Loading...</p>
-        ) : reducer.error ? (
+        ) : reducerDog.error ? (
           <p>Error, try again</p>
         ) : (
           <p>
-            <img src={reducer.url} />
+            <img src={reducerDog.url} />
           </p>
         )}
       </div>
@@ -29,6 +29,5 @@ class SagaTest extends React.Component {
 }
 
 export default connect(state => {
-  // console.log(state);
   return state;
 })(SagaTest);

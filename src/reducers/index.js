@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 
-import reducer from "./fetchDogs";
+import reducerDog from "./fetchDog";
+import reducerTodo from "./fetchTodo";
 
 const rootReducer = combineReducers({
-  reducer
+  reducerDog,
+  reducerTodo
 });
 
 export default rootReducer;

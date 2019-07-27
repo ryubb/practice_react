@@ -10,6 +10,7 @@ import Children from "./components/Children";
 import TodoApp from "./components/TodoApp";
 import Generator from "./components/Generator";
 import SagaTest from "./components/SagaTest";
+import TodoAppSaga from "./components/TodoAppSaga";
 
 const Body = styled("div")`
   width: 1024px;
@@ -34,7 +35,8 @@ const links = [
   { name: "Hooks", link_to: "/hooks" },
   { name: "TodoApp", link_to: "/todo" },
   { name: "Generator", link_to: "/generator" },
-  { name: "SagaTest", link_to: "/saga_test" }
+  { name: "SagaTest", link_to: "/saga_test" },
+  { name: "TodoSaga", link_to: "/todo_saga" }
 ];
 
 const App = () => {
@@ -58,6 +60,7 @@ const App = () => {
         <Route path="/todo" component={TodoApp} />
         <Route path="/generator" component={Generator} />
         <Route path="/saga_test" component={SagaTest} />
+        <Route path="/todo_saga" component={TodoAppSaga} />
       </Switch>
     </Body>
   );
