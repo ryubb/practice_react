@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 // import logger from "redux-logger";
-import { watchFetchDog } from "./sagas/sagaFetchDogs";
 import rootReducer from "./reducers/index";
 import rootSaga from "./sagas/index";
 
