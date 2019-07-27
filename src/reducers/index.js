@@ -1,73 +1,9 @@
-import { put, call, takeEvery } from "redux-saga/effects";
+import { combineReducers } from "redux";
 
-// Reducer
-const initialState = {
-  url: "",
-  loading: false,
-  error: false
-};
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "REQUESTED_DOG":
-      return {
-        url: "",
-        loading: true,
-        error: false
-      };
-    case "REQUESTED_DOG_SUCCEEDED":
-      return {
-        url: action.url,
-        loading: false,
-        error: false
-      };
-    case "REQUESTED_DOG_FAILED":
-      return {
-        url: "",
-        loading: false,
-        error: true
-      };
-    default:
-      console.log("default reducer");
-      return state;
-  }
-};
+import reducer from "./fetchDogs";
 
-// Action Creators
-const requestDog = () => {
-  return { type: "REQUESTED_DOG" };
-};
+const rootReducer = combineReducers({
+  reducer
+});
 
-const requestDogSuccess = data => {
-  return { type: "REQUESTED_DOG_SUCCEEDED", url: data.message };
-};
-
-const requestDogError = () => {
-  return { type: "REQUESTED_DOG_FAILED" };
-};
-
-export const fetchDog = () => {
-  console.log("fetchDog");
-  return { type: "FETCHED_DOG" };
-};
-
-// Sagas
-export function* watchFetchDog() {
-  console.log("watchFetchDog");
-  yield takeEvery("FETCHED_DOG", fetchDogAsync);
-}
-
-function* fetchDogAsync() {
-  try {
-    yield put(requestDog());
-    const data = yield call(() => {
-      return fetch("https://dog.ceo/api/breeds/image/random").then(res =>
-        res.json()
-      );
-    });
-    yield put(requestDogSuccess(data));
-  } catch (error) {
-    yield put(requestDogError());
-  }
-}
-
-export default reducer;
+export default rootReducer;
